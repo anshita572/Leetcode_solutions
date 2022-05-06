@@ -19,8 +19,8 @@ public:
     vector<vector<int>>ans;
         int index=0;
         vector<int>output;
-        solve(nums,index,output,ans);
-        return ans;
+        solve(nums,index,output,ans)
+        return ans
         
     }
 };
