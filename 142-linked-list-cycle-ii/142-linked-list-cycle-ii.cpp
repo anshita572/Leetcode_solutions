@@ -36,6 +36,6 @@ public: //Floyd detection
             slow=slow->next;
             fast=fast->next;
         }
-        return slow  //or return fast as both at same position
+        return slow ; //or return fast as both at same position
     }
 };
