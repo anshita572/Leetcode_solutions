@@ -9,8 +9,8 @@ class Solution{
     // arr[]: Input Array
     // N : Size of the Array arr[]
     // Function to count inversions in the array.
-    long long count=0;
-    void merge(long long arr[],long long start,long long end)
+   // long long count=0;
+    void merge(long long arr[],long long start,long long end,long long &count)
 {   
     long long mid=start+(end-start)/2;
     long long n1=mid-start+1;  //n1 : length of first subarray
@@ -66,20 +66,20 @@ else      //(j>n2)
 
 }
 
-void mergeSort(long long arr[],long long start,long long end)
+void mergeSort(long long arr[],long long start,long long end,long long &count)
 {//base case
     if(start>=end)
     {return;}
 long long mid=start+(end-start)/2;
     
     //else (start,end)
-    mergeSort(arr,start,mid);//recursive call
-    mergeSort(arr,mid+1,end);//recursive call
-    merge(arr,start,end);//calling merge function
+    mergeSort(arr,start,mid,count);//recursive call
+    mergeSort(arr,mid+1,end,count);//recursive call
+    merge(arr,start,end,count);//calling merge function
 }
     long long int inversionCount(long long arr[], long long N)
-    { //count=0;
-        mergeSort(arr,0,N-1);
+    { long long count=0;
+        mergeSort(arr,0,N-1,count);
         return count;
     }
 
