@@ -11,7 +11,8 @@ class Solution{
     // Function to count inversions in the array.
     long long count=0;
     void merge(long long arr[],long long start,long long end)
-{   long long mid=start+(end-start)/2;
+{   
+    long long mid=start+(end-start)/2;
     long long n1=mid-start+1;  //n1 : length of first subarray
      long long n2=end-mid;     //n2 : length of second subarray
      long long subArray1[n1]; 
@@ -77,7 +78,7 @@ long long mid=start+(end-start)/2;
     merge(arr,start,end);//calling merge function
 }
     long long int inversionCount(long long arr[], long long N)
-    { count=0;
+    { //count=0;
         mergeSort(arr,0,N-1);
         return count;
     }
