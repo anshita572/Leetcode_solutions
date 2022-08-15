@@ -1,17 +1,13 @@
 class Solution {
 public:
-    char toLowercase(char ch)
-{
-if(ch>='a' && ch<='z') //i.e. ch is lowercase
-{return ch;}
-else //if(ch>='A' && ch<='Z')//i.e. ch is uppercase
-{
-    ch = ch- 'A'+'a'; //coverting uppercase to lowercase
-    return ch;
-}
-}
+    
     bool isPalindrome(string s) {
         int n=s.length();
+        for(int i=0;i<n;i++)
+        {
+            if(s[i]>='A' && s[i]<='Z')
+            {s[i]=s[i]-'A'+'a';}
+        }
         int i=0;
         int j=n-1;
         while(i<=j)
@@ -19,7 +15,7 @@ else //if(ch>='A' && ch<='Z')//i.e. ch is uppercase
            {i++;}
             else if(isalnum(s[j])==0)
            {j--;}
-          else if (toLowercase(s[i])!=toLowercase(s[j]))
+          else if (s[i]!=s[j])
             {return false;}
             else //if(s[i]==s[j])
             {i++;
