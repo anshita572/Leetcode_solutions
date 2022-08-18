@@ -5,16 +5,22 @@ public:
         {return false;}
         if(s.compare(goal)==0)
         {return true;}
-        int partition=1;
-        for(int i=partition;i<s.length();i++)
+      queue<char>q1;
+      queue<char>q2;
+        for(int i=0;i<s.length();i++)
         {
-            string X=s.substr(0,partition);
-            string val=s.substr(partition,s.length());
-            val=val+X;
-            if(val.compare(goal)==0)
+            q1.push(s[i]);
+            q2.push(goal[i]);
+        }
+        int count=0;
+        while(count<goal.length())
+        {
+            char frontCh=q2.front();
+            q2.pop();
+            q2.push(frontCh);
+            count++;
+            if(q1==q2)
             {return true;}
-            else
-            {partition++;}
         }
         return false;
     }
