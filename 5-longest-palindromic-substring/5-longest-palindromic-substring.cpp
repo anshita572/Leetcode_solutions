@@ -30,11 +30,16 @@ public:
                 high++;
             }
         }
+        // if(maxi==0)
+        // {ans=s[0];}
+        // for(int i=start_index;i<start_index+maxi;i++)
+        // {ans+=s[i];}
+        // return ans;
+         
         if(maxi==0)
-        {ans=s[0];}
-        for(int i=start_index;i<start_index+maxi;i++)
-        {ans+=s[i];}
-        return ans;
+        {  s=s[0];
+            return s;}
+        return s.substr(start_index,maxi);
         
     }
 };
