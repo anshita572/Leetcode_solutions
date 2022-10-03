@@ -2,7 +2,7 @@ class Solution {
 public:
     void solve(string s, string t,int i,int j,int& count)
     {
-        if(i==s.length() || j==t.length())
+        if(j==t.length())
         {return;}
         if(s[i]==t[j])
         {count++;
