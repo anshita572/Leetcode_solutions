@@ -1,14 +1,14 @@
 class Solution {
 public:
-    int getLength(int n)
+        int getLength(int n)
     {
         string s= to_string (n);
-        int len=0;
-        while(n!=0)
-        {
-            n=n/10;
-            len++;
-        }
+        int len=s.length();
+        // while(n!=0)
+        // {
+        //     n=n/10;
+        //     len++;
+        // }
         return len;
         
     }
@@ -27,5 +27,20 @@ public:
         else
         {startingDig1=base;}
         return countDigitOne(remainder)+(firstDigit*countDigitOne(base-1))+startingDig1 ;
+        
+//         int count=0;
+//         for(int i=0;i<=n;i++)
+//         {string s=to_string(i);
+//          int len=s.length();
+//          for(int j=0;j<len;j++)
+//          {if(s[j]==1)
+//          {count++;}
+//          }
+//           cout<<count;  
+//         }
+//         return count;
+        
+        
+        
     }
 };
