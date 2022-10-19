@@ -20,13 +20,13 @@ public:
       {   path=path+to_string(root->val);
           ans.push_back(path);
           return;}
-      string old_path=path;
-       path=path+to_string(root->val);
+      // string old_path=path;
+       path=path+to_string(root->val); //pushing the value of current node
       path.push_back('-');
       path.push_back('>');
       solve(root->left,path,ans);
       solve(root->right,path,ans);
-      path=old_path;
+      // path=old_path;
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         string path="";
