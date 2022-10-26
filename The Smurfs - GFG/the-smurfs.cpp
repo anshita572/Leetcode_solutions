@@ -23,6 +23,9 @@ public:
             {greenCount++;}
         }
         int blueCount=n-(redCount+greenCount);
+        if((redCount==0 && greenCount==0) || (greenCount==0 && blueCount==0)
+    || (redCount==0 && blueCount==0))
+    {return n;}
         if((redCount % 2==0 && greenCount % 2==0 && blueCount % 2==0 )||
         (redCount&1 && greenCount&1 && blueCount&1 ))
         {return 2;}
