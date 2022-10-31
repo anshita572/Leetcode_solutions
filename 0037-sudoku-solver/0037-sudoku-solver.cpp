@@ -5,7 +5,7 @@ public:
         for(int i=0;i<9;i++)
         {
             //row check
-            if(board[row][i]==no+'0')
+            if(board[row][i]==no+'0') //converting int to char
             {return false;}
             //column check
              if(board[i][col]==no+'0')
@@ -24,20 +24,22 @@ public:
         {
             for(int j=0;j<9;j++)
             {if(board[i][j]=='.')
-            {
+              {
                 for(int no=1;no<=9;no++)
                 {
                     if(isSafe(board,i,j,no))
-                    {  board[i][j]=no+'0';
+                    {  board[i][j]=no+'0'; //converting int to char
                         bool recursiveCall=solve(board);
                     if(recursiveCall==true)
                     {return true;}
-                    else
-                    {board[i][j]='.';}
+                    // else
+                    // {board[i][j]='.';}
                     }
                 }
+                board[i][j]='.';
                 return false;
-            }}
+             }
+            }
         }
         return true;
     }
