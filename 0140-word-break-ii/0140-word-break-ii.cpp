@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void solve(string s,int index,unordered_set<string>st,string &temp,  vector<string>&ans)
+    void solve(string s,int index,unordered_set<string>st,string temp,  vector<string>&ans)
     {
         //base case
         if(index==s.length())
