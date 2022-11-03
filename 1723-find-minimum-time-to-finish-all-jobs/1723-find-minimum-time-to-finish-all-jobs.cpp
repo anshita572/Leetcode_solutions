@@ -1,19 +1,19 @@
 class Solution {
 public:
-    void solve(vector<int>& jobs,vector<int>&work,int n,int k,int i,int max_ans,int & min_ans)
+    void solve(vector<int>& jobs,vector<int>&work,int n,int k,int i,int work_array_max,int & ans)
     {
         //base case
         if(i==n)
-        {max_ans=*max_element(work.begin(),work.end());
-        min_ans=min(min_ans,max_ans);
+        {work_array_max=*max_element(work.begin(),work.end());
+        ans=min(ans,work_array_max);
         return;}
-        if(*max_element(work.begin(),work.end()) >= min_ans)
+        if(*max_element(work.begin(),work.end()) >= ans) //optimisation
         {return;}
         for(int j=0;j<k;j++)
         {if(j>0 && work[j]==work[j-1]) //optimisation
         {continue;}
             work[j]=work[j]+jobs[i];
-        solve(jobs,work,n,k,i+1,max_ans,min_ans);
+        solve(jobs,work,n,k,i+1,work_array_max,ans);
         work[j]=work[j]-jobs[i];}
         
     }
@@ -21,12 +21,12 @@ public:
         sort(jobs.begin(),jobs.end(),greater<int>());
         int n=jobs.size();
         if(n==k)
-        {return jobs[0];}
+        {return jobs[0];}//max element in jobs array after sorting in descending order
         vector<int>work(k);
-        int max_ans=0;
-        int min_ans=INT_MAX;
+        int work_array_max=0;
+        int ans=INT_MAX;
         int index=0;
-        solve(jobs,work,n,k,index,max_ans,min_ans);
-        return min_ans;
+        solve(jobs,work,n,k,index,work_array_max,ans);
+        return ans;
     }
 };
