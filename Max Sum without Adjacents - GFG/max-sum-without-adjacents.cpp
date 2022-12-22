@@ -8,6 +8,14 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
+     int solveTab(int *arr, int n)
+     {   vector<int>dp1(n+2,0);
+         for(int i=n-1;i>=0;i--)
+         {int include=arr[i]+dp1[i+2];
+         int exclude=dp1[i+1];
+         dp1[i]=max(include,exclude);}
+         return dp1[0];
+     }
      int solve(int *arr, int n,int i, vector<int>&dp)
      {
          if(i>=n)
@@ -22,8 +30,9 @@ public:
      }
 	// calculate the maximum sum with out adjacent
 	int findMaxSum(int *arr, int n) {
-	    vector<int>dp(n,-1);
-	   return solve(arr,n,0,dp);
+	   // vector<int>dp(n,-1);
+	   //return solve(arr,n,0,dp);
+	   return solveTab(arr,n);
 	}
 };
 
