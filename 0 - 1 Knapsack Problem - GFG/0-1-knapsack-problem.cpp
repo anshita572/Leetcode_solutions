@@ -13,9 +13,8 @@ class Solution
        for(int i=wt[0]; i<=cap; i++){
         prev[i] = val[0];
     }
-     for(int W=0;W<=cap;W++)
-        {
-         for(int i=1;i<n;i++)
+    for(int i=1;i<n;i++)
+        { for(int W=0;W<=cap;W++)
         {int inc=0;
         if(W>=wt[i])
        {  inc=val[i]+prev[W-wt[i]];}
@@ -28,8 +27,8 @@ class Solution
     }
     int solveTab(int cap, int wt[], int val[], int n){
         vector<vector<int>>dp(n+1,vector<int>(cap+1,0));
-           for(int i=wt[0]; i<=cap; i++){
-        dp[0][i] = val[0];
+           for(int i=wt[0]; i<=cap; i++){//Analyse base case
+        dp[0][i] = val[0];//initialsie 0th row of dp vector with val[0]
     }
       for(int i=1;i<n;i++)
         { for(int W=0;W<=cap;W++)
@@ -64,8 +63,8 @@ class Solution
     { 
     //     vector<vector<int>>dp(n,vector<int>(W+1,-1));
     //   return solve(W,wt,val,n,n-1,dp);
-    return solveTab(W,wt,val,n);
-    // return solveSO(W,wt,val,n);
+    // return solveTab(W,wt,val,n);
+    return solveSO(W,wt,val,n);
     }
 };
 
