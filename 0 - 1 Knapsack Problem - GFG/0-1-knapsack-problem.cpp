@@ -26,23 +26,26 @@ class Solution
         }
         return prev[cap];
     }
-    int solveTab(int cap, int wt[], int val[], int n)
-    {vector<vector<int>>dp(cap+1,vector<int>(n+1,0));
-        for(int W=0;W<=cap;W++)
-        {
-            for(int i=0;i<n;i++)
+    int solveTab(int cap, int wt[], int val[], int n){
+        vector<vector<int>>dp(n+1,vector<int>(cap+1,0));
+           for(int i=wt[0]; i<=cap; i++){
+        dp[0][i] = val[0];
+    }
+      for(int i=1;i<n;i++)
+        { for(int W=0;W<=cap;W++)
             {int inc=0;
         if(W>=wt[i])
-       {  inc=val[i]+dp[W-wt[i]][i-1];}
-        int exc=dp[W][i-1];
-         dp[W][i]= max(inc,exc);}
+       {  inc=val[i]+dp[i-1][W-wt[i]];}
+        int exc=dp[i-1][W];
+         dp[i][W]= max(inc,exc);}
         }
-        return dp[cap][n-1];
+        return dp[n-1][cap];
     }
     int solve(int W, int wt[], int val[], int n,int i,vector<vector<int>>&dp)
     {
         if(i==0)
-        {if(W>=wt[0])
+        {if(W>=wt[0]) //I am at last index and my knapsack still has capacity
+        //to accomodate last item(wt[0]) then just take it
             {return val[0];}
         else
         {return 0;}
