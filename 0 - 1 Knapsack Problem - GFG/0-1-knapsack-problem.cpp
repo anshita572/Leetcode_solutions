@@ -7,6 +7,25 @@ using namespace std;
 class Solution
 {
     public:
+    int solveSO(int cap, int wt[], int val[], int n)
+    {vector<int>curr(cap+1,0);
+     vector<int>prev(cap+1,0);
+       for(int i=wt[0]; i<=cap; i++){
+        prev[i] = val[0];
+    }
+     for(int W=0;W<=cap;W++)
+        {
+         for(int i=1;i<n;i++)
+        {int inc=0;
+        if(W>=wt[i])
+       {  inc=val[i]+prev[W-wt[i]];}
+        int exc=prev[W];
+         curr[W]= max(inc,exc);
+        }
+        prev=curr;
+        }
+        return prev[cap];
+    }
     int solveTab(int cap, int wt[], int val[], int n)
     {vector<vector<int>>dp(cap+1,vector<int>(n+1,0));
         for(int W=0;W<=cap;W++)
@@ -22,23 +41,28 @@ class Solution
     }
     int solve(int W, int wt[], int val[], int n,int i,vector<vector<int>>&dp)
     {
-        if(W<=0 || i>=n)
+        if(i==0)
+        {if(W>=wt[0])
+            {return val[0];}
+        else
         {return 0;}
-        if(dp[W][i]!=-1)
-        {return dp[W][i];}
+        }
+        if(dp[i][W]!=-1)
+        {return dp[i][W];}
         int inc=0;
         if(W>=wt[i])
-       {  inc=val[i]+solve(W-wt[i],wt,val,n,i+1,dp);}
-        int exc=solve(W,wt,val,n,i+1,dp);
-        return dp[W][i]= max(inc,exc);
+       {  inc=val[i]+solve(W-wt[i],wt,val,n,i-1,dp);}
+        int exc=solve(W,wt,val,n,i-1,dp);
+        return dp[i][W]= max(inc,exc);
         
     }
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
     { 
-    //     vector<vector<int>>dp(W+1,vector<int>(n,-1));
-    //   return solve(W,wt,val,n,0,dp);
-    return solveTab(W,wt,val,n);
+        vector<vector<int>>dp(n,vector<int>(W+1,-1));
+      return solve(W,wt,val,n,n-1,dp);
+    // return solveTab(W,wt,val,n);
+    // return solveSO(W,wt,val,n);
     }
 };
 
