@@ -7,6 +7,8 @@ using namespace std;
 class Solution
 {
     public:
+    // int solveTab(int W, int wt[], int val[], int n)
+    // {}
     int solve(int W, int wt[], int val[], int n,int i,vector<vector<int>>&dp)
     {
         if(W<=0 || i>=n)
@@ -22,7 +24,7 @@ class Solution
     }
     //Function to return max value that can be put in knapsack of capacity W.
     int knapSack(int W, int wt[], int val[], int n) 
-    { vector<vector<int>>dp(W+1,vector<int>(n+1,-1));
+    { vector<vector<int>>dp(W+1,vector<int>(n,-1));
       return solve(W,wt,val,n,0,dp);
     }
 };
