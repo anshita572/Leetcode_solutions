@@ -9,9 +9,9 @@ class Solution
     public:
     int solveTab(int cap, int wt[], int val[], int n)
     {vector<vector<int>>dp(cap+1,vector<int>(n+1,0));
-    for(int i=n-1;i>=0;i--)
-        { for(int W=0;W<=cap;W++)
-            
+        for(int W=0;W<=cap;W++)
+        {
+            for(int i=n-1;i>=0;i--)
             {int inc=0;
         if(W>=wt[i])
        {  inc=val[i]+dp[W-wt[i]][i+1];}
