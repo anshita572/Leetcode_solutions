@@ -7,6 +7,22 @@ using namespace std;
 class Solution
 {
     public:
+    int solveSO2(int cap, int wt[], int val[], int n)
+    {vector<int>curr(cap+1,0);
+       for(int i=wt[0]; i<=cap; i++){
+        curr[i] = val[0];
+    }
+    for(int i=1;i<n;i++)
+        { for(int W=cap;W>=0;W--)
+        {int inc=0;
+        if(W>=wt[i])
+       {  inc=val[i]+curr[W-wt[i]];}
+        int exc=curr[W];
+         curr[W]= max(inc,exc);
+        }
+        }
+        return curr[cap];
+    }
     int solveSO(int cap, int wt[], int val[], int n)
     {vector<int>curr(cap+1,0);
      vector<int>prev(cap+1,0);
@@ -64,7 +80,8 @@ class Solution
     //     vector<vector<int>>dp(n,vector<int>(W+1,-1));
     //   return solve(W,wt,val,n,n-1,dp);
     // return solveTab(W,wt,val,n);
-    return solveSO(W,wt,val,n);
+    // return solveSO(W,wt,val,n);
+    return solveSO2(W,wt,val,n);
     }
 };
 
