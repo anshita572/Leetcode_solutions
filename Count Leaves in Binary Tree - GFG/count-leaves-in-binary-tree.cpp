@@ -114,19 +114,17 @@ struct Node
          10
       /      \ 
    20       30 */
-   int solve(Node* &root)
-   {if(root==NULL)
-   {return 0;}
-       if(root->left==NULL && root->right==NULL)
-  {return 1;}
-  int leftAns=solve(root->left);
-  int rightAns=solve(root->right);
-  int ans=leftAns+rightAns;
-  return ans;
-   }
+ void solve(Node* root,int &count)
+ {
+     if(root==NULL)
+     {return;}
+     if(root->left==NULL && root->right== NULL)
+     {count++;}
+     solve(root->left,count);
+     solve(root->right,count);
+ }
 int countLeaves(Node* root)
-{
-  
-  return solve(root);
-
+{int count=0;
+  solve(root,count);
+  return count;
 }
