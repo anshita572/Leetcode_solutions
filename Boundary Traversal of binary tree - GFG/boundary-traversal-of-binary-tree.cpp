@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 #define MAX_HEIGHT 100000
@@ -95,7 +95,7 @@ Node* buildTree(string str)
 
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /* A binary tree Node
 struct Node
 {
@@ -105,58 +105,51 @@ struct Node
 
 class Solution {
 public:
-void traverseLeft(Node *root,vector<int>&ans)
-{
-    if(root == NULL)
+    void left(Node *root,vector <int>&ans)
+    {if(root == NULL)
     {return;}
-    if(root->left == NULL && root->right == NULL) //excluding leaf nodes
+    if(root->left == NULL && root->right == NULL)
     {return;}
     ans.push_back(root->data);
-    if(root->left)
-    {traverseLeft(root->left,ans);}
-    else                             //agar left h hi nhi then go right
-    {traverseLeft(root->right,ans);} 
-}
-void traverseLeaf(Node *root,vector<int>&ans)
-{    if(root == NULL)
-      {return;}
-      if(root->left == NULL && root->right == NULL) //if leaf node then push its data
-        {ans.push_back(root->data);
-            return;
-        }
-        traverseLeaf(root->left,ans);
-        traverseLeaf(root->right,ans);
-    
-}
-void traverseRight(Node *root,vector<int>&ans)
-{
-    if(root == NULL)
+    if(root->left != NULL)
+    {left(root->left,ans);}
+    else//if(root->right!= NULL)
+    {left(root->right,ans);}
+    }
+    void leaf(Node *root,vector <int>&ans)
+    {if(root == NULL)
     {return;}
-    if(root->left == NULL && root->right == NULL) //excluding leaf nodes
+    if(root->left == NULL && root->right == NULL)
+    {ans.push_back(root->data);
+        return;}
+    leaf(root->left,ans);
+    leaf(root->right,ans);
+    }
+    void right(Node *root,vector <int>&ans)
+    {if(root == NULL)
     {return;}
-    if(root->right)
-    {traverseRight(root->right,ans);}
-    else
-    {traverseRight(root->left,ans);}
+    if(root->left == NULL && root->right == NULL)
+    {return;}
+    if(root->right!= NULL)
+    {right(root->right,ans);}
+    else//if(root->left != NULL)
+    {right(root->left,ans);}
     ans.push_back(root->data);
-}
+    }
     vector <int> boundary(Node *root)
-    {
-        vector<int>ans;
-        if(root==NULL)
-        {
-         return ans;   
-        }
-        ans.push_back(root->data);  // first of all,push root and then traverse left,leaf,right
-        traverseLeft(root->left,ans);
-        traverseLeaf(root->left,ans);
-        traverseLeaf(root->right,ans);
-        traverseRight(root->right,ans);
-        return ans;
+    {vector <int>ans;
+    if(root == NULL)
+    {return ans;}
+    ans.push_back(root->data);
+    left(root->left,ans);
+    leaf(root->left,ans);
+    leaf(root->right,ans);
+    right(root->right,ans);
+    return ans;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 /* Driver program to test size function*/
 
@@ -176,4 +169,5 @@ int main() {
         cout << endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
