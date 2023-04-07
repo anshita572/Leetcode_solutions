@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 #include <bits/stdc++.h>
@@ -88,9 +88,7 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
-
-
+// } Driver Code Ends
 /*
 struct Node
 {
@@ -104,47 +102,38 @@ class Solution
     public:
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
+    vector<int>solve(Node *root)
+    {
+        queue<pair<Node*,int>>q;
+        map<int,int>mp;
+        q.push({root,0});
+        while(!q.empty())
+        {   auto p = q.front();
+            q.pop();
+            Node* temp=p.first;
+            int vertical = p.second;
+            if(mp.find(vertical)==mp.end())
+            {mp[vertical]=temp->data;}
+            if(temp->left)
+            {q.push({temp->left,vertical-1});}
+            if(temp->right)
+            {q.push({temp->right,vertical+1});}
+        }
+        vector<int>ans;
+        for(auto it : mp)
+        {ans.push_back(it.second);}
+        return ans;
+    }
     vector<int> topView(Node *root)
     {
-       vector<int>ans;
-       if(root==NULL)
-       {
-           return ans;
-       }
-       map<int,int>topNode; //int : for node->data,int for hd
-       queue<pair<Node*,int> > q;
-       q.push(make_pair(root,0));
-       while(!q.empty())
-       {pair<Node*,int>temp=q.front();
-       q.pop();
-       Node*curr=temp.first;
-       int hd=temp.second;
-       if(topNode.find(hd)==topNode.end())
-       {
-           topNode[hd]=curr->data;
-       }
-       if(curr->left)
-       {
-           q.push(make_pair(curr->left,hd-1));
-       }
-         if(curr->right)
-       {
-           q.push(make_pair(curr->right,hd+1));
-       }
-           
-       }
-       for(auto i:topNode)
-       {
-           ans.push_back(i.second);
-       }
-       return ans;
+       return solve(root); 
     }
 
 };
 
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int tc;
@@ -161,4 +150,5 @@ int main() {
         cout<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
