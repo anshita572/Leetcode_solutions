@@ -118,11 +118,13 @@ info solve(Node* root,int &ans)
     currNode.maxi=max(root->data,right.maxi);
     currNode.mini=min(root->data,left.mini);
     if(left.isBST && right.isBST && root->data>left.maxi && root->data<right.mini)
-    {currNode.isBST=true;}
+    {currNode.isBST=true;
+     ans=max(ans,currNode.size);
+    }
     else
     {currNode.isBST=false;}
-    if(currNode.isBST==true)
-    {ans=max(ans,currNode.size);}
+    // if(currNode.isBST==true)
+    // {ans=max(ans,currNode.size);}
     return currNode;
 }
 class Solution{
