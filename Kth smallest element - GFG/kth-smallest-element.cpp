@@ -1,10 +1,10 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial function template for C++
 
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 class Solution{
@@ -14,14 +14,20 @@ class Solution{
     // r : ending index of the array i.e size-1
     // k : find kth smallest element and return using this function
     int kthSmallest(int arr[], int l, int r, int k) {
-    //  int n=arr.length();
-    int n=r-l+1;
-      sort(arr,arr+n);
-      return arr[k-1];
+      priority_queue<int>pq;  //Max heap
+      for(int i=0;i<k;i++)
+      {pq.push(arr[i]);}
+      for(int i=k;i<=r;i++)
+      {if(arr[i]<pq.top())
+          {pq.pop();
+           pq.push(arr[i]);
+          }
+      }
+      return pq.top();
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
  
 int main()
 {
@@ -42,4 +48,5 @@ int main()
         cout<<ob.kthSmallest(a, 0, number_of_elements-1, k)<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
