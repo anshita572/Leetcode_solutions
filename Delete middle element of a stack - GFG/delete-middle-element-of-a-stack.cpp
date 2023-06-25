@@ -10,20 +10,20 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to delete middle element of a stack.
+    void solve(stack<int>&s,int count,int mid)
+    {if(count == mid)
+        {s.pop();
+         return;
+        }
+        int top=s.top();
+        s.pop();
+        solve(s,count+1,mid);
+        s.push(top);
+    }
     void deleteMid(stack<int>&s, int sizeOfStack)
-    {int count=0;
-     stack<int>s2;
-     while(count != sizeOfStack/2)
-     {s2.push(s.top());
-      s.pop();
-      count++;
-     }
-     s.pop();
-     while(!s2.empty())
-     {s.push(s2.top());
-      s2.pop();
-     }
+    {   int mid=sizeOfStack/2;
+        int count=0;
+        solve(s,count,mid);
     }
 };
 
