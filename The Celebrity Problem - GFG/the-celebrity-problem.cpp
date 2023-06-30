@@ -19,19 +19,37 @@ class Solution
     //Function to find if there is a celebrity in the party or not.
     int celebrity(vector<vector<int> >& M, int n) 
     { 
+        stack<int>s;
         for(int i=0;i<n;i++)
-        {bool isCelebrity = true;
-         for(int j=0;j<n;j++)
-         {if(i!=j && (knows(M,i,j) || !knows(M,j,i)))
-            {isCelebrity = false;
-             break;    
-            }
-             
-         }
-            if(isCelebrity)
-            {return i;}
+        {s.push(i);}
+        while(s.size() != 1)
+        {int a=s.top();
+         s.pop();
+         int b=s.top();
+         s.pop();
+         if(knows(M,a,b) && !knows(M,b,a))
+         {s.push(b);}
+         else
+         {s.push(a);}
         }
-       return -1;
+        int candidate = s.top();
+        int zeroCount=0;
+        for(int i=0;i<n;i++)
+        {if(M[candidate][i] == 0)
+        {zeroCount++;}
+        }
+        if(zeroCount != n)
+        {return -1;}
+        
+        int oneCount=0;
+        for(int i=0;i<n;i++)
+        {if(M[i][candidate] == 1)
+        {oneCount++;}
+        }
+        if(oneCount != n-1)
+        {return -1;}
+        return candidate;
+        
     }
 };
 
