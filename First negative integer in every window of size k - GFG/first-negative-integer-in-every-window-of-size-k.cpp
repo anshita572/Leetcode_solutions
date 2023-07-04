@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,45 +25,32 @@ int main() {
     }
     return 0;
 }
+
 // } Driver Code Ends
 
 
 vector<long long> printFirstNegativeInteger(long long int A[],
                                              long long int N, long long int K) {
-            queue<long long>q;
-            vector<long long>ans;
-            //process first window
-            for(int i=0;i<K;i++)
-            {
-                if(A[i]<0) //if negative element in array
-                {
-                    q.push(i);//push index of that negative element
-                }
-            }
-            if(q.size()>0) 
-            {
-                ans.push_back(A[q.front()]);
-            }
-            else
-            {ans.push_back(0);}
-            
-            //process remaining windows
-            for(int i=K;i<N;i++)
-            {
-               if((i-q.front()>=K) && !q.empty())
-               {q.pop();}
-               if(A[i]<0) //if negative element in array
-                {
-                    q.push(i);//push index of that negative element
-                }
-             if(q.size()>0) 
-            {
-                ans.push_back(A[q.front()]);
-            }
-            else
-            {ans.push_back(0);}
-            }
-           
-            return ans;
-            
+ vector<long long>ans;
+ queue<long long>q;
+ for(int i=0;i<K;i++) 
+ {if(A[i]<0)
+     {q.push(i);}
+ }
+ if(!q.empty())
+ {ans.push_back(A[q.front()]);}
+ else
+ {ans.push_back(0);}
+ for(int i=K;i<N;i++)
+ {if(i-q.front()>=K && !q.empty())
+ {q.pop();}
+ if(A[i]<0)
+ {q.push(i);}
+ if(!q.empty())
+ {ans.push_back(A[q.front()]);}
+ else
+ {ans.push_back(0);}
+     
+ }
+ return ans;
  }
