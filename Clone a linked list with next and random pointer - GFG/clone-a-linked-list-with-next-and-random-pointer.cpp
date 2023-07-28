@@ -34,29 +34,43 @@ class Solution
     }
     Node *copyList(Node *head)
     { Node *cloneHead = NULL;
-      Node *cloneTail = NULL;
-      Node *temp = head;
+        Node *cloneTail = NULL;
+         Node *temp = head;
       while(temp != NULL){
           insertAtTail(cloneHead,cloneTail,temp->data);
           temp = temp->next;
       }
-       unordered_map<Node*,Node*>mp;
-       temp = head;
+    
        Node *originalNode = head;
        Node *cloneNode = cloneHead;
-       // creating mapping of originalNode with cloneNode in map
-       while(originalNode != NULL){
-           mp[originalNode] = cloneNode;
-           originalNode = originalNode->next;
-           cloneNode = cloneNode->next;
+       while(originalNode != NULL && cloneNode != NULL){
+           Node *org_next = originalNode -> next;
+           originalNode -> next = cloneNode;
+           originalNode = org_next;
+
+           org_next = cloneNode -> next;
+           cloneNode -> next = originalNode;
+           cloneNode = org_next;
        }
-       originalNode = head;
+       temp = head;
+       while(temp != NULL){
+           if(temp->arb != NULL){
+               temp->next->arb = temp->arb->next;
+           }
+           else{
+               temp->next->arb = NULL;
+           }
+           temp = temp->next->next;
+       }
+        originalNode = head;
        cloneNode = cloneHead;
-       while(originalNode != NULL){
-           cloneNode -> arb = mp[originalNode -> arb];
-           originalNode = originalNode->next;
-           cloneNode = cloneNode->next;
-           
+       while(originalNode != NULL && cloneNode != NULL){
+           originalNode -> next = cloneNode -> next;
+           originalNode =  originalNode -> next;
+           if(originalNode != NULL){
+           cloneNode -> next = originalNode -> next;
+           }
+           cloneNode = cloneNode -> next;
        }
        return cloneHead;
     }
