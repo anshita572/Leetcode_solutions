@@ -16,7 +16,7 @@ class Solution {
         vector<int>distance(n+1,1e9);
         vector<int>parent(n+1);
         for(int i = 1; i <= n; i++){
-            parent[i] = i;
+            parent[i] = -1;
         }
         distance[1] = 0;
         pq.push({0,1});
@@ -40,7 +40,7 @@ class Solution {
         }
         vector<int>ans;
         int node = n;
-        while(parent[node] != node){
+        while(parent[node] != -1){
             ans.push_back(node);
             node = parent[node];
         }
