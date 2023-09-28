@@ -1,6 +1,6 @@
 # Rat in a Maze Problem - I
 ## Medium
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Consider a rat placed at <strong>(0, 0)</strong> in a square matrix<strong> </strong>of order <strong>N * N</strong>. It has to reach the destination at <strong>(N - 1, N - 1)</strong>. Find all possible paths that the rat can take to reach from source to destination. The directions in which the rat can move are <strong>'U'(up)</strong>, <strong>'D'(down)</strong>, <strong>'L' (left)</strong>, <strong>'R' (right)</strong>. Value 0 at a cell in the matrix represents that it is blocked and rat cannot move to it while value 1 at a cell in the matrix represents that&nbsp;rat&nbsp;can be travel&nbsp;through it.<br>
+<div class="problems_problem_content__Xm_eO" bis_skin_checked="1"><p><span style="font-size:18px">Consider a rat placed at <strong>(0, 0)</strong> in a square matrix<strong> </strong>of order <strong>N * N</strong>. It has to reach the destination at <strong>(N - 1, N - 1)</strong>. Find all possible paths that the rat can take to reach from source to destination. The directions in which the rat can move are <strong>'U'(up)</strong>, <strong>'D'(down)</strong>, <strong>'L' (left)</strong>, <strong>'R' (right)</strong>. Value 0 at a cell in the matrix represents that it is blocked and rat cannot move to it while value 1 at a cell in the matrix represents that&nbsp;rat&nbsp;can be travel&nbsp;through it.<br>
 <strong>Note</strong>: In a path, no cell can be visited more than one time.</span>&nbsp;<span style="font-size:18px">If the source cell is&nbsp;0, the rat cannot move to any other cell.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -19,7 +19,7 @@ The rat can reach the destination at
 and DDRDRR, when printed in sorted order 
 we get DDRDRR DRDDRR.</span></pre>
 
-<div><span style="font-size:18px"><strong>Example 2:</strong></span></div>
+<div bis_skin_checked="1"><span style="font-size:18px"><strong>Example 2:</strong></span></div>
 
 <pre><span style="font-size:18px"><strong>Input</strong>:
 N = 2
